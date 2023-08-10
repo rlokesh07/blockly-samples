@@ -9,7 +9,7 @@ arduinoGenerator['logic_null'] = function(block) {
 
   arduinoGenerator['text'] = function(block) {
     const textValue = block.getFieldValue('TEXT');
-    const code = `"${textValue}"`;
+    const code = `${textValue}`;
     return [code, arduinoGenerator.PRECEDENCE];
   };
 
@@ -27,7 +27,7 @@ arduinoGenerator['logic_null'] = function(block) {
     const name = block.getFieldValue('MEMBER_NAME');
     const value = arduinoGenerator.valueToCode(
         block, 'MEMBER_VALUE', arduinoGenerator.PRECEDENCE);
-    const code = `"${name}": ${value}`;
+    const code = `void setup() ${value} `;
     return code;
   };
 
@@ -52,4 +52,28 @@ arduinoGenerator['logic_null'] = function(block) {
         arduinoGenerator.statementToCode(block, 'MEMBERS');
     const code = '{\n' + statementMembers + '\n}';
     return [code, arduinoGenerator.PRECEDENCE];
+  };
+
+  arduinoGenerator['n'] = function(block) {
+    const name = block.getFieldValue('MEMBER_NAME');
+    const value = arduinoGenerator.valueToCode(
+        block, 'MEMBER_VALUE', arduinoGenerator.PRECEDENCE);
+    const code = `\n void loop() ${value} `;
+    return code;
+  };
+
+  arduinoGenerator['servo-define'] = function(block) {
+    const name = block.getFieldValue('MEMBER_NAME');
+    const value = arduinoGenerator.valueToCode(
+        block, 'MEMBER_VALUE', arduinoGenerator.PRECEDENCE);
+    const code = `\n Servo ${value} ;`;
+    return code;
+  };
+
+  arduinoGenerator['servo-attach'] = function(block) {
+    const name = block.getFieldValue('MEMBER_NAME');
+    const value = jsonGenerator.valueToCode(
+        block, 'MEMBER_VALUE', jsonGenerator.PRECEDENCE);
+    const code = `"${name}": ${value}`;
+    return code;
   };

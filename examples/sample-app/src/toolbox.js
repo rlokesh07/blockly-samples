@@ -22,6 +22,18 @@ export const toolbox = {
     {
       'kind': 'block',
       'type': 'member'
+    },    
+    {
+      'kind': 'block',
+      'type': 'servo-define'
+    },     
+    {
+      'kind': 'block',
+      'type': 'servo-attach'
+    }, 
+    {
+      'kind': 'block',
+      'type': 'n'
     },
     {
       'kind': 'block',
